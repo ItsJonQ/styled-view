@@ -27,12 +27,12 @@
   "author": "Jon Quach <hello@jonquach.com> (https://jonquach.com)",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/itsjonq/zero.git"
+    "url": "git+https://github.com/itsjonq/styled-view.git"
   },
   "bugs": {
-    "url": "https://github.com/itsjonq/zero/issues"
+    "url": "https://github.com/itsjonq/styled-view/issues"
   },
-  "homepage": "https://github.com/itsjonq/zero#readme",
+  "homepage": "https://github.com/itsjonq/styled-view#readme",
   "keywords": [
     "styled",
     "components",
