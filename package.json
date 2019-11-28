@@ -1,0 +1,45 @@
+{
+  "name": "styled-view",
+  "version": "0.0.0",
+  "description": "UI Primitive for React, with CSS-in-JS support",
+  "main": "src/index.js",
+  "private": false,
+  "scripts": {
+    "prestart": "zero prestart",
+    "build": "zero build",
+    "lint": "zero lint",
+    "test": "zero test",
+    "format": "zero format",
+    "validate": "zero validate",
+    "release": "zero release",
+    "version": "zero build",
+    "precommit": "zero pre-commit",
+    "storybook": "start-storybook -p 6006",
+    "build-storybook": "build-storybook"
+  },
+  "files": [
+    "dist",
+    "README.md",
+    "LICENSE"
+  ],
+  "license": "MIT",
+  "devDependencies": {
+    "@babel/core": "7.7.4",
+    "@itsjonq/zero": "^4.1.2",
+    "@storybook/addon-actions": "5.2.6",
+    "@storybook/addon-links": "5.2.6",
+    "@storybook/addons": "5.2.6",
+    "@storybook/react": "5.2.6",
+    "babel-loader": "8.0.6",
+    "react": "16.12.0",
+    "react-dom": "16.12.0"
+  },
+  "publishConfig": {
+    "access": "public"
+  },
+  "dependencies": {
+    "@emotion/core": "^10.x",
+    "@emotion/styled": "^10.x",
+    "is-style-prop-valid": "^0.0.2"
+  }
+}
