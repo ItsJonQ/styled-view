@@ -1,6 +1,19 @@
 # ✌️ Styled View
 
+[![Build Status](https://travis-ci.org/ItsJonQ/styled-view.svg?branch=master)](https://travis-ci.org/ItsJonQ/styled-view)
+[![Coverage Status](https://coveralls.io/repos/github/ItsJonQ/styled-view/badge.svg?branch=master)](https://coveralls.io/github/ItsJonQ/styled-view?branch=master)
+
 > UI Primitive for React, with CSS-in-JS support
+
+## Table of contents
+
+<!-- START doctoc generated TOC please keep comment here to allow auto update -->
+<!-- DON'T EDIT THIS SECTION, INSTEAD RE-RUN doctoc TO UPDATE -->
+
+-   [Installation](#installation)
+-   [Usage](#usage)
+
+<!-- END doctoc generated TOC please keep comment here to allow auto update -->
 
 ## Installation
 
