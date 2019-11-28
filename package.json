@@ -22,6 +22,26 @@
     "README.md",
     "LICENSE"
   ],
+  "author": "Jon Quach <hello@jonquach.com> (https://jonquach.com)",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/itsjonq/zero.git"
+  },
+  "bugs": {
+    "url": "https://github.com/itsjonq/zero/issues"
+  },
+  "homepage": "https://github.com/itsjonq/zero#readme",
+  "keywords": [
+    "styled",
+    "components",
+    "styled-components",
+    "emotion",
+    "view",
+    "styled-view",
+    "css-in-js",
+    "css",
+    "react"
+  ],
   "license": "MIT",
   "devDependencies": {
     "@babel/core": "7.7.4",
