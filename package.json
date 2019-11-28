@@ -7,8 +7,10 @@
   "scripts": {
     "prestart": "zero prestart",
     "build": "zero build",
+    "coverage": "nyc report --temp-directory=coverage --reporter=text-lcov | coveralls",
     "lint": "zero lint",
     "test": "zero test",
+    "test:coverage": "zero test --coverage",
     "format": "zero format",
     "validate": "zero validate",
     "release": "zero release",
@@ -51,12 +53,15 @@
   },
   "devDependencies": {
     "@babel/core": "7.7.4",
-    "@itsjonq/zero": "^4.1.2",
+    "@itsjonq/cyan": "^0.15.1",
+    "@itsjonq/zero": "^4.1.3",
     "@storybook/addon-actions": "5.2.6",
     "@storybook/addon-links": "5.2.6",
     "@storybook/addons": "5.2.6",
     "@storybook/react": "5.2.6",
     "babel-loader": "8.0.6",
+    "coveralls": "3.0.9",
+    "nyc": "14.1.1",
     "react": "16.12.0",
     "react-dom": "16.12.0"
   },
