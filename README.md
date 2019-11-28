@@ -44,14 +44,14 @@ import { View } from 'styled-view';
 
 function Example() {
 	const css = `
-        &:hover {
-            background-color: blue;
-            color: white;
-        }
+		&:hover {
+			background-color: blue;
+			color: white;
+		}
 
-        @media (min-width: 768px) {
-            padding: 40px;
-        }
+		@media (min-width: 768px) {
+			padding: 40px;
+		}
     `;
 
 	return (

@@ -43,6 +43,12 @@
     "react"
   ],
   "license": "MIT",
+  "publishConfig": {
+    "access": "public"
+  },
+  "peerDependencies": {
+    "react": "^16"
+  },
   "devDependencies": {
     "@babel/core": "7.7.4",
     "@itsjonq/zero": "^4.1.2",
@@ -54,12 +60,9 @@
     "react": "16.12.0",
     "react-dom": "16.12.0"
   },
-  "publishConfig": {
-    "access": "public"
-  },
   "dependencies": {
     "@emotion/core": "^10.x",
     "@emotion/styled": "^10.x",
-    "is-style-prop-valid": "^0.0.2"
+    "is-style-prop-valid": "^0.0.3"
   }
 }
