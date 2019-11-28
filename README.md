@@ -2,15 +2,6 @@
 
 > UI Primitive for React, with CSS-in-JS support
 
-<!-- START doctoc generated TOC please keep comment here to allow auto update -->
-<!-- DON'T EDIT THIS SECTION, INSTEAD RE-RUN doctoc TO UPDATE -->
-
--   [✌️ Styled View](#%EF%B8%8F-styled-view)
-    -   [Installation](#installation)
-    -   [Usage](#usage)
-
-<!-- END doctoc generated TOC please keep comment here to allow auto update -->
-
 ## Installation
 
 ```
