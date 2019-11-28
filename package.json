@@ -9,7 +9,8 @@
     "build": "zero build",
     "coverage": "nyc report --temp-directory=coverage --reporter=text-lcov | coveralls",
     "lint": "zero lint",
-    "test": "zero test",
+    "dev": "zero test",
+    "test": "zero test --no-watch",
     "test:coverage": "zero test --coverage",
     "format": "zero format",
     "validate": "zero validate",
@@ -68,6 +69,6 @@
   "dependencies": {
     "@emotion/core": "^10.x",
     "@emotion/styled": "^10.x",
-    "is-style-prop-valid": "^0.0.3"
+    "is-style-prop-valid": "^0.0.4"
   }
 }
