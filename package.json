@@ -2,11 +2,15 @@
   "name": "styled-view",
   "version": "0.0.3",
   "description": "UI Primitive for React, with CSS-in-JS support",
-  "main": "dist/index.js",
+  "main": "dist/cjs/index.js",
+  "module": "dist/es/index.js",
+  "sideEffects": false,
   "private": false,
   "scripts": {
     "prestart": "zero prestart",
-    "build": "zero build",
+    "build:es": "BUILD_FORMAT=es zero build -d dist/es",
+    "build:cjs": "BUILD_FORMAT=cjs zero build -d dist/cjs",
+    "build": "npm run build:cjs && npm run build:es -- --no-clean",
     "coverage": "nyc report --temp-directory=coverage --reporter=text-lcov | coveralls",
     "lint": "zero lint",
     "dev": "zero test",
@@ -15,7 +19,7 @@
     "format": "zero format",
     "validate": "zero validate",
     "release": "zero release",
-    "version": "zero build",
+    "version": "npm run build",
     "precommit": "zero pre-commit",
     "storybook": "start-storybook -p 6006",
     "build-storybook": "build-storybook"
@@ -55,7 +59,7 @@
   "devDependencies": {
     "@babel/core": "7.7.4",
     "@itsjonq/cyan": "^0.15.1",
-    "@itsjonq/zero": "^4.1.4",
+    "@itsjonq/zero": "^4.1.7",
     "@storybook/addon-actions": "5.2.6",
     "@storybook/addon-links": "5.2.6",
     "@storybook/addons": "5.2.6",
@@ -69,6 +73,6 @@
   "dependencies": {
     "@emotion/core": "^10.x",
     "@emotion/styled": "^10.x",
-    "is-style-prop-valid": "^0.0.4"
+    "is-style-prop-valid": "^0.0.6"
   }
 }
