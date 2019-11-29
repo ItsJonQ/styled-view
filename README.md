@@ -112,28 +112,7 @@ function Example() {
 
 ### Mixins
 
-`<View />` can render mixins (`function`) when passed into the `mixins` (`Array`) prop. This enables integration with libraries like [Styled Systems](https://github.com/styled-system/styled-system). It also enable you to add your very own custom mixins!
-
-```jsx
-import React from 'react';
-import { space, layout, typography, color } from 'styled-system';
-import { View } from 'styled-view';
-
-// Add styled-system functions to your component
-function Box(props) {
-	return <View {...props} mixins={[space, layout, typography, color]} />;
-}
-
-function Example() {
-	return (
-		<Box p={4} bg="#ddd" borderRadius={8}>
-			Hello
-		</Box>
-	);
-}
-```
-
-Alternatively, mixins can be added using the `css` function.
+`<View />` can render mixins (`function`) when passed into the `css` function. This enables integration with libraries like [Styled Systems](https://github.com/styled-system/styled-system). It also enable you to add your very own custom mixins!
 
 ```jsx
 import React from 'react';

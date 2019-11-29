@@ -14,6 +14,7 @@
     "coverage": "nyc report --temp-directory=coverage --reporter=text-lcov | coveralls",
     "lint": "zero lint",
     "dev": "zero test",
+    "start": "npm run storybook",
     "test": "zero test --coverage",
     "test:coverage": "npm run test",
     "format": "zero format",

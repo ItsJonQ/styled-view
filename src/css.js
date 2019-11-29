@@ -1,32 +1,40 @@
-import { isString, isFunction } from './utils';
+import { isString, isPlainObject, isFunction } from './utils';
+
+const initialCssOutput = { css: [], sx: {} };
 
 export function css(...args) {
 	return props => {
 		const [strings, ...fns] = args;
-		const result = [];
+		const output = { ...initialCssOutput };
 
 		strings.forEach((string, index) => {
-			result.push(string);
+			output.css.push(string);
 			const fn = fns[index];
 			if (isFunction(fn)) {
-				result.push(fn(props));
+				const rendered = fn(props);
+				if (isPlainObject(rendered)) {
+					output.sx = { ...output.sx, ...rendered };
+				}
+				if (isString(rendered)) {
+					output.css.push(rendered);
+				}
 			}
 		});
 
-		return result.join('\n');
+		return output;
 	};
 }
 
 export function getCompiledCss(props) {
 	const { css: cssProp, ...restProps } = props;
 
-	let compiledCss = '';
+	let compiledCss = { ...initialCssOutput };
 
 	if (isFunction(cssProp)) {
 		compiledCss = cssProp(restProps);
 	}
 	if (isString(cssProp)) {
-		compiledCss = cssProp;
+		compiledCss.css.push(cssProp);
 	}
 
 	return compiledCss;

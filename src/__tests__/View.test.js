@@ -1,7 +1,6 @@
 import React from 'react';
 import { cy } from '@itsjonq/cyan';
 import { View } from '../index';
-import { space, layout, typography, color } from 'styled-system';
 
 describe('View', () => {
 	test('should render a div, by default', () => {
@@ -25,14 +24,14 @@ describe('View', () => {
 
 	test('should render styles', () => {
 		cy.render(
-			<View background="blue" color="white">
+			<View background="pink" color="white">
 				Hello
 			</View>,
 		);
 
 		const el = cy.get('div');
 
-		expect(el.style().background).toBe('blue');
+		expect(el.style().background).toBe('pink');
 		expect(el.style().color).toBe('white');
 	});
 
@@ -40,7 +39,7 @@ describe('View', () => {
 		cy.render(
 			<View
 				css={`
-					background: blue;
+					background: purple;
 					color: white;
 				`}
 			>
@@ -50,64 +49,35 @@ describe('View', () => {
 
 		const el = cy.get('div');
 
-		expect(el.style().background).toBe('blue');
+		expect(el.style().background).toBe('purple');
 		expect(el.style().color).toBe('white');
 	});
 
-	test('should support mixins', () => {
-		// Add styled-system functions to your component
-		const Box = props => {
-			return (
-				<View {...props} mixins={[space, layout, typography, color]} />
-			);
-		};
-
+	test.skip('should render styles using sx prop', () => {
 		cy.render(
-			<Box p={4} bg="blue" borderRadius={8}>
+			<View
+				sx={{
+					background: 'red',
+					color: 'black',
+					padding: 21,
+				}}
+			>
 				Hello
-			</Box>,
-		);
-
-		const el = cy.get('div');
-
-		expect(el.style().background).toBe('blue');
-		expect(el.style().padding).toBe('32px');
-		expect(el.style().borderRadius).toBe('8px');
-	});
-
-	test('should gracefully handle incompatible mixin prop', () => {
-		const Box = props => {
-			return <View {...props} mixins={'padding: 20px;'} />;
-		};
-
-		cy.render(<Box background="red">Hello</Box>);
-
-		const el = cy.get('div');
-
-		expect(el.style().background).toBe('red');
-		expect(el.style().padding).not.toBe('20px');
-	});
-
-	test('should gracefully handle incompatible mixins', () => {
-		const nope = '';
-		const yup = ({ p }) => {
-			return {
-				padding: p * 4,
-			};
-		};
-		const Box = props => {
-			return <View {...props} mixins={[nope, yup]} />;
-		};
-
-		cy.render(
-			<Box background="red" p={2}>
-				Hello
-			</Box>,
+			</View>,
 		);
 
 		const el = cy.get('div');
 
 		expect(el.style().background).toBe('red');
-		expect(el.style().padding).toBe('8px');
+		expect(el.style().color).toBe('black');
+		expect(el.style().padding).toBe('21px');
+	});
+
+	test('should handle invalid sx prop', () => {
+		cy.render(<View sx={[['zIndex', 100]]}>Hello</View>);
+
+		const el = cy.get('div');
+
+		expect(el.style().zIndex).not.toBe(100);
 	});
 });
