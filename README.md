@@ -13,7 +13,8 @@
 
 -   [Installation](#installation)
 -   [Usage](#usage)
-    -   [The `css` prop](#the-css-prop)
+    -   [`css` function](#css-function)
+    -   [`css` prop](#css-prop)
     -   [Mixins](#mixins)
 
 <!-- END doctoc generated TOC please keep comment here to allow auto update -->
@@ -41,7 +42,47 @@ function Example() {
 }
 ```
 
-### The `css` prop
+### `css` function
+
+`css` is a utility function that works with the `<View />` `css` prop. The API is similar to the [Emotion's css prop](https://emotion.sh/docs/css-prop#string-styles). Unlike the `css` prop, the [tagged template literal](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Template_literals) allows for functions, which is handy for mixins.
+
+```jsx
+import React from 'react';
+import { css, View } from 'styled-view';
+
+function Example() {
+	const variant = ({ variant }) => {
+		switch (variant) {
+			case 'primary':
+				return `
+					background-color: blue;
+					color: white;
+			`;
+			default:
+				return `
+				background-color: yellow;
+			`;
+		}
+	};
+
+	return (
+		<View
+			backgroundColor="#eee"
+			padding={20}
+			css={css`
+				${variant};
+				&:hover {
+					transform: scale(1.2);
+				}
+			`}
+		>
+			Hello
+		</View>
+	);
+}
+```
+
+### `css` prop
 
 `<View />` accepts a special `css` prop, which allows you to write styles, just like the [css prop](https://emotion.sh/docs/css-prop#string-styles) or [styled component](https://emotion.sh/docs/styled#styling-elements-and-components) from Emotion.
 
@@ -59,7 +100,7 @@ function Example() {
 		@media (min-width: 768px) {
 			padding: 40px;
 		}
-    `;
+	`;
 
 	return (
 		<View backgroundColor="#eee" padding={20} css={css}>
@@ -81,6 +122,37 @@ import { View } from 'styled-view';
 // Add styled-system functions to your component
 function Box(props) {
 	return <View {...props} mixins={[space, layout, typography, color]} />;
+}
+
+function Example() {
+	return (
+		<Box p={4} bg="#ddd" borderRadius={8}>
+			Hello
+		</Box>
+	);
+}
+```
+
+Alternatively, mixins can be added using the `css` function.
+
+```jsx
+import React from 'react';
+import { space, layout, typography, color } from 'styled-system';
+import { css, View } from 'styled-view';
+
+// Add styled-system functions to your component
+function Box(props) {
+	return (
+		<View
+			{...props}
+			css={css`
+				${space};
+				${layout};
+				${typography};
+				${color};
+			`}
+		/>
+	);
 }
 
 function Example() {
