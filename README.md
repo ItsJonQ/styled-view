@@ -15,6 +15,7 @@
 -   [Usage](#usage)
     -   [`css` function](#css-function)
     -   [`css` prop](#css-prop)
+    -   [`sx` prop](#sx-prop)
     -   [Mixins](#mixins)
 
 <!-- END doctoc generated TOC please keep comment here to allow auto update -->
@@ -107,6 +108,19 @@ function Example() {
 			Hello
 		</View>
 	);
+}
+```
+
+### `sx` prop
+
+`<View />` accepts a special `sx` prop, which allows you to write style objects.
+
+```jsx
+import React from 'react';
+import { View } from 'styled-view';
+
+function Example() {
+	return <View sx={{ backgroundColor: 'pink', padding: 20 }}>Hello</View>;
 }
 ```
 
