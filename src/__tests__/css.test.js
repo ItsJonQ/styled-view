@@ -74,7 +74,7 @@ describe('css', () => {
 		const el = cy.get('div');
 
 		expect(el.style().background).toBe('red');
-		expect(el.style().padding).toBe('20px');
+		expect(el.style().padding).toBe('32px');
 		expect(el.style().margin).toBe('8px');
 	});
 });

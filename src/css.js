@@ -1,11 +1,9 @@
 import { isString, isPlainObject, isFunction } from './utils';
 
-const initialCssOutput = { css: [], sx: {} };
-
 export function css(...args) {
 	return props => {
 		const [strings, ...fns] = args;
-		const output = { ...initialCssOutput };
+		const output = { css: [], sx: {} };
 
 		strings.forEach((string, index) => {
 			output.css.push(string);
@@ -28,7 +26,7 @@ export function css(...args) {
 export function getCompiledCss(props) {
 	const { css: cssProp, ...restProps } = props;
 
-	let compiledCss = { ...initialCssOutput };
+	let compiledCss = { css: [], sx: {} };
 
 	if (isFunction(cssProp)) {
 		compiledCss = cssProp(restProps);

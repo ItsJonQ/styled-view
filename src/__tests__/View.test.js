@@ -53,7 +53,7 @@ describe('View', () => {
 		expect(el.style().color).toBe('white');
 	});
 
-	test.skip('should render styles using sx prop', () => {
+	test('should render styles using sx prop', () => {
 		cy.render(
 			<View
 				sx={{

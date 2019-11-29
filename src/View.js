@@ -13,9 +13,7 @@ import { getCompiledCss } from './css';
  */
 export function View(props) {
 	const { className, css: cssProp, ...restProps } = props;
-
 	const { css: compiledCss, sx } = getCompiledCss(props);
-	console.log(sx);
 
 	return (
 		<ClassNames>
