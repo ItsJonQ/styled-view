@@ -2,6 +2,7 @@
 
 [![Build Status](https://travis-ci.org/ItsJonQ/styled-view.svg?branch=master)](https://travis-ci.org/ItsJonQ/styled-view)
 [![Coverage Status](https://coveralls.io/repos/github/ItsJonQ/styled-view/badge.svg?branch=master)](https://coveralls.io/github/ItsJonQ/styled-view?branch=master)
+[![Bundle size](https://badgen.net/bundlephobia/minzip/styled-view)](https://bundlephobia.com/result?p=styled-view)
 
 > UI Primitive for React, with CSS-in-JS support
 
