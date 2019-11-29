@@ -91,3 +91,5 @@ function Example() {
 	);
 }
 ```
+
+This concepts was inspired by [James Newell](https://github.com/jameslnewell) ❤️!
