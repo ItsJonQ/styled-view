@@ -74,4 +74,40 @@ describe('View', () => {
 		expect(el.style().padding).toBe('32px');
 		expect(el.style().borderRadius).toBe('8px');
 	});
+
+	test('should gracefully handle incompatible mixin prop', () => {
+		const Box = props => {
+			return <View {...props} mixins={'padding: 20px;'} />;
+		};
+
+		cy.render(<Box background="red">Hello</Box>);
+
+		const el = cy.get('div');
+
+		expect(el.style().background).toBe('red');
+		expect(el.style().padding).not.toBe('20px');
+	});
+
+	test('should gracefully handle incompatible mixins', () => {
+		const nope = '';
+		const yup = ({ p }) => {
+			return {
+				padding: p * 4,
+			};
+		};
+		const Box = props => {
+			return <View {...props} mixins={[nope, yup]} />;
+		};
+
+		cy.render(
+			<Box background="red" p={2}>
+				Hello
+			</Box>,
+		);
+
+		const el = cy.get('div');
+
+		expect(el.style().background).toBe('red');
+		expect(el.style().padding).toBe('8px');
+	});
 });
