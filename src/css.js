@@ -1,7 +1,7 @@
 import { isString, isFunction } from './utils';
 
 export function css(...args) {
-	return (props = {}) => {
+	return props => {
 		const [strings, ...fns] = args;
 		const result = [];
 
@@ -17,7 +17,7 @@ export function css(...args) {
 	};
 }
 
-export function getCompiledCss(props = {}) {
+export function getCompiledCss(props) {
 	const { css: cssProp, ...restProps } = props;
 
 	let compiledCss = '';
