@@ -1,6 +1,7 @@
 import React from 'react';
 import { ClassNames } from '@emotion/core';
 import BaseView from './BaseView';
+import { useMixins } from './useMixins';
 
 /**
  * UI Primitive with built-in styled CSS support.
@@ -12,20 +13,25 @@ import BaseView from './BaseView';
  */
 export function View(props) {
 	const { className, css: cssProp, ...restProps } = props;
+	const { css: mixinCss, props: mixinProps } = useMixins(props);
 
 	return (
 		<ClassNames>
-			{({ css, cx }) => (
-				<BaseView
-					className={cx(
-						className,
-						css`
-							${cssProp}
-						`,
-					)}
-					{...restProps}
-				/>
-			)}
+			{({ css, cx }) => {
+				return (
+					<BaseView
+						className={cx(
+							className,
+							css`
+								${mixinCss}
+								${cssProp}
+							`,
+						)}
+						{...mixinProps}
+						{...restProps}
+					/>
+				);
+			}}
 		</ClassNames>
 	);
 }

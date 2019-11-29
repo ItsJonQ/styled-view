@@ -68,7 +68,8 @@
     "coveralls": "3.0.9",
     "nyc": "14.1.1",
     "react": "16.12.0",
-    "react-dom": "16.12.0"
+    "react-dom": "16.12.0",
+    "styled-system": "5.1.2"
   },
   "dependencies": {
     "@emotion/core": "^10.x",
