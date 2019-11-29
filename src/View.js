@@ -1,6 +1,7 @@
 import React from 'react';
 import { ClassNames } from '@emotion/core';
 import BaseView from './BaseView';
+import { getCompiledCss } from './css';
 import { useMixins } from './useMixins';
 
 /**
@@ -15,6 +16,8 @@ export function View(props) {
 	const { className, css: cssProp, ...restProps } = props;
 	const { css: mixinCss, props: mixinProps } = useMixins(props);
 
+	const compiledCss = getCompiledCss(props);
+
 	return (
 		<ClassNames>
 			{({ css, cx }) => {
@@ -23,8 +26,8 @@ export function View(props) {
 						className={cx(
 							className,
 							css`
-								${mixinCss}
-								${cssProp}
+								${mixinCss};
+								${compiledCss};
 							`,
 						)}
 						{...mixinProps}

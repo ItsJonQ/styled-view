@@ -5,7 +5,7 @@ const defaultProps = {
 	boxSizing: 'border-box',
 };
 
-export const BaseView = styled.div({}, props => {
+export const BaseView = styled('div')(props => {
 	const mergedProps = { ...defaultProps, ...props };
 	return sanitizeStyleProps(mergedProps);
 });
