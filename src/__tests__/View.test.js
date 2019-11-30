@@ -1,6 +1,6 @@
 import React from 'react';
 import { cy } from '@itsjonq/cyan';
-import { View } from '../index';
+import { View, css } from '../index';
 
 describe('View', () => {
 	test('should render a div, by default', () => {
@@ -79,5 +79,28 @@ describe('View', () => {
 		const el = cy.get('div');
 
 		expect(el.style().zIndex).not.toBe(100);
+	});
+
+	test('should handle recursive css prop functions', () => {
+		const Example = props => {
+			const mixin = ({ p }) => `padding: ${p * 4}px`;
+			return (
+				<View
+					__css={css`
+						${mixin}
+					`}
+					{...props}
+				/>
+			);
+		};
+
+		const customCss = css`
+			background: pink;
+		`;
+
+		cy.render(<Example css={customCss} p={2} />);
+
+		expect(cy.get('div').style().background).toBe('pink');
+		expect(cy.get('div').style().padding).toBe('8px');
 	});
 });

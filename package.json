@@ -12,6 +12,7 @@
     "build:cjs": "BUILD_FORMAT=cjs zero build -d dist/cjs",
     "build": "npm run build:cjs && npm run build:es -- --no-clean",
     "coverage": "nyc report --temp-directory=coverage --reporter=text-lcov | coveralls",
+    "open:coverage": "open ./coverage/lcov-report/index.html",
     "lint": "zero lint",
     "dev": "zero test",
     "start": "npm run storybook",
