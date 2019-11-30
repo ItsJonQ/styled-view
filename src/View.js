@@ -1,7 +1,6 @@
 import React from 'react';
-import { ClassNames } from '@emotion/core';
+import { compileToClassName } from './css';
 import BaseView from './BaseView';
-import { getCompiledCss } from './css';
 
 /**
  * UI Primitive with built-in styled CSS support.
@@ -13,26 +12,9 @@ import { getCompiledCss } from './css';
  */
 export function View(props) {
 	const { className, css: cssProp, ...restProps } = props;
-	const { css: compiledCss, sx } = getCompiledCss(props);
+	const nextClassName = compileToClassName(props);
 
-	return (
-		<ClassNames>
-			{({ css, cx }) => {
-				return (
-					<BaseView
-						className={cx(
-							className,
-							css`
-								${compiledCss};
-							`,
-						)}
-						{...sx}
-						{...restProps}
-					/>
-				);
-			}}
-		</ClassNames>
-	);
+	return <BaseView className={nextClassName} {...restProps} />;
 }
 
 export default View;

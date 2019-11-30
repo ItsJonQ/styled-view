@@ -1,6 +1,7 @@
 import React from 'react';
 import { cy } from '@itsjonq/cyan';
 import { View, css } from '../index';
+import { css as emotionCss } from 'emotion';
 
 describe('View', () => {
 	test('should render a div, by default', () => {
@@ -38,7 +39,7 @@ describe('View', () => {
 	test('should render styles using css prop', () => {
 		cy.render(
 			<View
-				css={`
+				css={emotionCss`
 					background: purple;
 					color: white;
 				`}
@@ -51,6 +52,26 @@ describe('View', () => {
 
 		expect(el.style().background).toBe('purple');
 		expect(el.style().color).toBe('white');
+	});
+
+	test('should render object styles using css prop', () => {
+		cy.render(
+			<View
+				css={{
+					background: 'red',
+					color: 'black',
+					padding: 21,
+				}}
+			>
+				Hello
+			</View>,
+		);
+
+		const el = cy.get('div');
+
+		expect(el.style().background).toBe('red');
+		expect(el.style().color).toBe('black');
+		expect(el.style().padding).toBe('21px');
 	});
 
 	test('should render styles using sx prop', () => {
@@ -81,12 +102,12 @@ describe('View', () => {
 		expect(el.style().zIndex).not.toBe(100);
 	});
 
-	test('should handle recursive css prop functions', () => {
+	test('should handle css prop functions', () => {
 		const Example = props => {
 			const mixin = ({ p }) => `padding: ${p * 4}px`;
 			return (
 				<View
-					__css={css`
+					css={css`
 						${mixin}
 					`}
 					{...props}
@@ -98,7 +119,7 @@ describe('View', () => {
 			background: pink;
 		`;
 
-		cy.render(<Example css={customCss} p={2} />);
+		cy.render(<Example className={customCss} p={2} />);
 
 		expect(cy.get('div').style().background).toBe('pink');
 		expect(cy.get('div').style().padding).toBe('8px');

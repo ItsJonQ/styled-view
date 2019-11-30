@@ -1,3 +1,7 @@
+export function isArray(value) {
+	return Array.isArray(value);
+}
+
 export function isPlainObject(value) {
 	return isDefined(value) && value.toString() === '[object Object]';
 }
@@ -13,3 +17,11 @@ export function isString(value) {
 export function isFunction(value) {
 	return typeof value === 'function';
 }
+
+export const is = {
+	array: isArray,
+	plainObject: isPlainObject,
+	defined: isDefined,
+	string: isString,
+	function: isFunction,
+};

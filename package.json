@@ -66,6 +66,7 @@
     "@storybook/addon-links": "5.2.6",
     "@storybook/addons": "5.2.6",
     "@storybook/react": "5.2.6",
+    "@styled-system/css": "5.0.23",
     "babel-loader": "8.0.6",
     "coveralls": "3.0.9",
     "nyc": "14.1.1",
@@ -76,6 +77,7 @@
   "dependencies": {
     "@emotion/core": "^10.x",
     "@emotion/styled": "^10.x",
+    "emotion": "10.0.23",
     "is-style-prop-valid": "^0.0.6"
   }
 }

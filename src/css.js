@@ -1,52 +1,84 @@
-import { isString, isPlainObject, isFunction } from './utils';
+import { css as emotionCss, cx as emotionCx } from 'emotion';
+import { is } from './utils';
+
+export { cx } from 'emotion';
+
+export const INTERNAL_COMPILE_KEY = '__SECRET_STYLED_VIEW_TO_COMPILE__';
 
 export function css(...args) {
+	const [firstArg, ...fns] = args;
+
+	if (!fns.length) {
+		if (is.array(firstArg)) {
+			return css.apply(css, firstArg);
+		}
+		if (is.string(firstArg)) {
+			return emotionCss`${firstArg}`;
+		}
+		if (is.plainObject(firstArg)) {
+			return emotionCss(firstArg);
+		}
+		return '';
+	}
+
+	return {
+		args,
+		[INTERNAL_COMPILE_KEY]: true,
+	};
+}
+
+export function cxx(...args) {
 	return props => {
 		const [strings, ...fns] = args;
-		const output = { css: [], sx: {} };
+		const results = [];
 
 		strings.forEach((string, index) => {
-			output.css.push(string);
+			results.push(string);
 			const fn = fns[index];
-			if (isFunction(fn)) {
-				const rendered = fn(props);
-				if (isPlainObject(rendered)) {
-					output.sx = { ...output.sx, ...rendered };
-				}
-				if (isString(rendered)) {
-					output.css.push(rendered);
+
+			if (is.function(fn)) {
+				try {
+					const rx = emotionCss`
+						${fn(props)};
+					`;
+					results.push(rx);
+				} catch (err) {
+					console.warn(
+						'styled-view: Error when parsing css',
+						'\n',
+						'\n',
+						err,
+					);
+					results.push('');
 				}
 			}
 		});
 
-		return output;
+		return emotionCss`
+			${results}
+		`;
 	};
 }
 
-export function getCompiledCss(props) {
-	const { __css, css: cssProp, ...restProps } = props;
+export function compileToClassName(props) {
+	const { className, css } = props;
+	let result = '';
 
-	let compiledCss = { css: [], sx: {} };
-
-	if (isFunction(__css)) {
-		const __nextCss = __css(restProps);
-		compiledCss.css = compiledCss.css.concat(__nextCss.css);
-		compiledCss.sx = { ...compiledCss.sx, ...__nextCss.sx };
-	}
-	if (isString(__css)) {
-		compiledCss.css.push(__css);
+	if (is.plainObject(css)) {
+		if (css[INTERNAL_COMPILE_KEY]) {
+			result = cxx.apply(cxx, [...css.args])(props);
+		} else {
+			result = emotionCss(css);
+		}
 	}
 
-	if (isFunction(cssProp)) {
-		const nextCss = cssProp(restProps);
-		compiledCss.css = compiledCss.css.concat(nextCss.css);
-		compiledCss.sx = { ...compiledCss.sx, ...nextCss.sx };
-	}
-	if (isString(cssProp)) {
-		compiledCss.css.push(cssProp);
+	if (is.array(css)) {
+		result = emotionCss(css);
 	}
 
-	compiledCss.css = compiledCss.css.filter(isString).join(';');
+	if (is.string(css)) {
+		result = css;
+	}
 
-	return compiledCss;
+	return emotionCx(className, result);
 }
