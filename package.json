@@ -1,6 +1,6 @@
 {
   "name": "styled-view",
-  "version": "0.0.7",
+  "version": "0.0.8",
   "description": "UI Primitive for React, with CSS-in-JS support",
   "main": "dist/cjs/index.js",
   "module": "dist/es/index.js",
