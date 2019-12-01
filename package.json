@@ -78,8 +78,8 @@
   "dependencies": {
     "@emotion/core": "^10.x",
     "@emotion/styled": "^10.x",
-    "@itsjonq/is": "^0.0.1",
+    "@itsjonq/is": "^0.0.2",
     "emotion": "^10.x",
-    "is-style-prop-valid": "^0.0.6"
+    "is-style-prop-valid": "^0.0.7"
   }
 }
