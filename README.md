@@ -17,6 +17,7 @@
     -   [`css` prop](#css-prop)
     -   [`sx` prop](#sx-prop)
     -   [Mixins](#mixins)
+    -   [Theming](#theming)
 
 <!-- END doctoc generated TOC please keep comment here to allow auto update -->
 
@@ -158,3 +159,25 @@ function Example() {
 ```
 
 This concepts was inspired by [James Newell](https://github.com/jameslnewell) ❤️!
+
+### Theming
+
+Theming `<View />` works as specified by [Emotion Theming](https://emotion.sh/docs/theming).
+
+```jsx
+import React from 'react';
+import { ThemeProvider } from 'emotion-theming';
+import { View } from 'styled-view';
+
+const theme = {
+	fontFamily: 'arial',
+};
+
+function Example() {
+	return (
+		<ThemeProvider theme={theme}>
+			<View>Hello</View>
+		</ThemeProvider>
+	);
+}
+```

@@ -1,7 +1,8 @@
 import React from 'react';
 import { cy } from '@itsjonq/cyan';
-import { View, css } from '../index';
 import { css as emotionCss } from 'emotion';
+import { ThemeProvider } from 'emotion-theming';
+import { View, css } from '../index';
 
 describe('View', () => {
 	test('should render a div, by default', () => {
@@ -123,5 +124,61 @@ describe('View', () => {
 
 		expect(cy.get('div').style().background).toBe('pink');
 		expect(cy.get('div').style().padding).toBe('8px');
+	});
+
+	test('should enable theming', () => {
+		const theme = {
+			fontFamily: 'arial',
+		};
+
+		cy.render(
+			<ThemeProvider theme={theme}>
+				<View>Hello</View>
+			</ThemeProvider>,
+		);
+
+		expect(cy.get('div').style().fontFamily).toBe('arial');
+	});
+
+	test('should recognize own themed props', () => {
+		const theme = {
+			fontFamily: 'arial',
+		};
+
+		cy.render(
+			<ThemeProvider theme={theme}>
+				<View theme={{ fontFamily: 'georgia' }}>Hello</View>
+			</ThemeProvider>,
+		);
+
+		expect(cy.get('div').style().fontFamily).toBe('georgia');
+	});
+
+	test('should override theming if props are defined', () => {
+		const theme = {
+			fontFamily: 'arial',
+		};
+
+		cy.render(
+			<ThemeProvider theme={theme}>
+				<View as="h1">Title</View>
+				<View fontFamily="georgia">
+					Hello
+					<View as="span" fontFamily="monospace">
+						There
+						<View as="button">Click</View>
+						<ThemeProvider theme={{ fontFamily: 'serif' }}>
+							<View as="h2">Subtitle</View>
+						</ThemeProvider>
+					</View>
+				</View>
+			</ThemeProvider>,
+		);
+
+		expect(cy.get('h1').style().fontFamily).toBe('arial');
+		expect(cy.get('div').style().fontFamily).toBe('georgia');
+		expect(cy.get('span').style().fontFamily).toBe('monospace');
+		expect(cy.get('button').style().fontFamily).toBe('arial');
+		expect(cy.get('h2').style().fontFamily).toBe('serif');
 	});
 });

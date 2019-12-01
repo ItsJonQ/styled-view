@@ -8,12 +8,18 @@ const defaultProps = {
 
 export const BaseView = styled('div')(props => {
 	const mergedProps = { ...defaultProps, ...props };
-	const { sx, ...restProps } = mergedProps;
+	const { theme, sx, ...restProps } = mergedProps;
 
-	const stylePropsObject = is.plainObject(sx) ? sx : {};
-	const styleProps = { ...restProps, ...stylePropsObject };
+	// Theme support
+	const themeProps = is.plainObject(theme) ? theme : {};
+	// Style prop (Override)
+	const styleProps = is.plainObject(sx) ? sx : {};
 
-	return sanitizeStyleProps(styleProps);
+	return sanitizeStyleProps({
+		...themeProps,
+		...restProps,
+		...styleProps,
+	});
 });
 
 export default BaseView;
