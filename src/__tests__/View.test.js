@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useRef } from 'react';
 import { cy } from '@itsjonq/cyan';
 import { css as emotionCss } from 'emotion';
 import { ThemeProvider } from 'emotion-theming';

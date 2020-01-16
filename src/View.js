@@ -10,11 +10,11 @@ import BaseView from './BaseView';
  * @example
  * <View backgroundColor="blue" color="white">Hello</View>
  */
-export function View(props) {
+export const View = React.forwardRef((props, ref) => {
 	const { className, css: cssProp, ...restProps } = props;
 	const nextClassName = compileToClassName(props);
 
-	return <BaseView className={nextClassName} {...restProps} />;
-}
+	return <BaseView className={nextClassName} {...restProps} ref={ref} />;
+});
 
 export default View;
